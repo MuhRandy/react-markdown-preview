@@ -1,10 +1,7 @@
-import {
-  IconBlockquote,
-  IconArrowsMaximize,
-  IconArrowsDiagonalMinimize2,
-} from '@tabler/icons-react';
+import { IconBlockquote } from '@tabler/icons-react';
 import Markdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import Header from './Header';
 
 const Preview = ({
   maximizeEditor,
@@ -18,18 +15,12 @@ const Preview = ({
         maximizeEditor ? 'hidden' : ''
       }`}
     >
-      <div className="bg-black text-white text-center flex justify-center relative">
-        <IconBlockquote className="absolute left-0" />
-        Preview
-        <button className="absolute right-0" onClick={handleClick}>
-          <IconArrowsMaximize
-            className={`${maximizePreview ? 'hidden' : ''}`}
-          />
-          <IconArrowsDiagonalMinimize2
-            className={`${maximizePreview ? '' : 'hidden'}`}
-          />
-        </button>
-      </div>
+      <Header
+        handleClick={handleClick}
+        maximize={maximizePreview}
+        icon={<IconBlockquote className="absolute left-0" />}
+        text={'Preview'}
+      />
       <Markdown
         className="prose max-w-[800px] prose-invert prose-headings:border-b-2 bg-slate-700 px-10 py-5"
         remarkPlugins={[remarkGfm]}

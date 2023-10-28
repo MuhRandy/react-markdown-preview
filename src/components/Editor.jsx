@@ -1,8 +1,5 @@
-import {
-  IconEdit,
-  IconArrowsMaximize,
-  IconArrowsDiagonalMinimize2,
-} from '@tabler/icons-react';
+import { IconEdit } from '@tabler/icons-react';
+import Header from './Header';
 
 const Editor = ({
   maximizeEditor,
@@ -14,16 +11,12 @@ const Editor = ({
     <div
       className={`"shadow-xl shadow-black" ${maximizePreview ? 'hidden' : ''}`}
     >
-      <div className="bg-black text-white text-center flex justify-center relative">
-        <IconEdit className="absolute left-0" />
-        Editor
-        <button className="absolute right-0" onClick={handleClick}>
-          <IconArrowsMaximize className={`${maximizeEditor ? 'hidden' : ''}`} />
-          <IconArrowsDiagonalMinimize2
-            className={`${maximizeEditor ? '' : 'hidden'}`}
-          />
-        </button>
-      </div>
+      <Header
+        handleClick={handleClick}
+        maximize={maximizeEditor}
+        icon={<IconEdit className="absolute left-0" />}
+        text={'Editor'}
+      />
       <textarea
         name="markdown"
         id="markdown"
