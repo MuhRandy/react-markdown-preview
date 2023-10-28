@@ -9,14 +9,14 @@ function App() {
       "## This is a sub-heading...\n\n" +
       "### And here's some other cool stuff:\n\n" +
       "Heres some code, `<div></div>`, between 2 backticks.\n\n" +
-      "````\n" +
+      "~~~js\n" +
       "// this is multi-line code:\n\n" +
       "function anotherExample(firstLine, lastLine) {\n" +
       "  if (firstLine == '```' && lastLine == '```') {\n" +
       "    return multiLineCode;\n" +
       "  }\n" +
       "}\n" +
-      "````\n\n" +
+      "~~~\n\n" +
       "You can also make text **bold**... whoa!\n" +
       "Or _italic_.\n" +
       "Or... wait for it... **_both!_** \n" +
