@@ -10,3 +10,4 @@ Currently, two official plugins are available:
 # This Help me
 
 - [When got problem using react markdown while using tailwind](https://tailwindcss.com/docs/typography-plugin)
+- [When got problem add variable with multiline strings](https://www.freecodecamp.org/news/javascript-multiline-string-how-to-create-multi-line-strings-in-js/)
