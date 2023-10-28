@@ -19,8 +19,8 @@ const Editor = ({
         text={'Editor'}
       />
       <textarea
-        name="markdown"
-        id="markdown"
+        name="editor"
+        id="editor"
         cols="60"
         rows={`${maximizeEditor ? '24' : '20'}`}
         onChange={handleChange}
