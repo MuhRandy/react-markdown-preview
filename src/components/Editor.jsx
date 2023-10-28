@@ -6,6 +6,7 @@ const Editor = ({
   maximizePreview,
   handleChange,
   handleClick,
+  markdown,
 }) => {
   return (
     <div
@@ -23,7 +24,8 @@ const Editor = ({
         cols="60"
         rows={`${maximizeEditor ? '24' : '20'}`}
         onChange={handleChange}
-      ></textarea>
+        value={markdown}
+      />
     </div>
   );
 };
