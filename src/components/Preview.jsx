@@ -5,6 +5,7 @@ import Header from "./Header";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { atomDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 import clsx from "clsx";
+import { cn } from "../utils";
 
 const Preview = ({
   maximizeEditor,
@@ -41,7 +42,7 @@ const Preview = ({
                 PreTag="div"
               />
             ) : (
-              <code {...rest} className={`${className} bg-white`}>
+              <code {...rest} className={cn("bg-white", className)}>
                 {children}
               </code>
             );
