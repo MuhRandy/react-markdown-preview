@@ -1,4 +1,5 @@
-import { IconLayoutNavbar, IconLayoutSidebar } from '@tabler/icons-react';
+import { IconLayoutNavbar, IconLayoutSidebar } from "@tabler/icons-react";
+import clsx from "clsx";
 
 const LayoutToggle = ({
   sideBySide,
@@ -8,13 +9,14 @@ const LayoutToggle = ({
 }) => {
   return (
     <button
-      className={`bg-black text-white absolute top-4 right-4 p-2 rounded-lg ${
-        maximizeEditor || maximizePreview ? 'hidden' : ''
-      }`}
+      className={clsx(
+        "bg-black text-white absolute top-4 right-4 p-2 rounded-lg",
+        { hidden: maximizeEditor || maximizePreview }
+      )}
       onClick={handleClick}
     >
-      <IconLayoutNavbar className={`${sideBySide ? '' : 'hidden'}`} />
-      <IconLayoutSidebar className={`${sideBySide ? 'hidden' : ''}`} />
+      <IconLayoutNavbar className={clsx({ hidden: !sideBySide })} />
+      <IconLayoutSidebar className={clsx({ hidden: sideBySide })} />
     </button>
   );
 };

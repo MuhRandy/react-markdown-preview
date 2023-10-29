@@ -2,6 +2,7 @@ import { useState } from "react";
 import Editor from "./components/Editor";
 import Preview from "./components/Preview";
 import LayoutToggle from "./components/LayoutToggle";
+import clsx from "clsx";
 
 function App() {
   const [markdown, setMarkdown] = useState(
@@ -59,9 +60,9 @@ function App() {
 
   return (
     <div
-      className={`flex min-w-[100vw] gap-5 py-4 relative ${
-        sideBySide ? "" : "flex-col items-center"
-      }`}
+      className={clsx("flex min-w-[100vw] gap-5 py-4 relative", {
+        "flex-col items-center": !sideBySide,
+      })}
     >
       <LayoutToggle
         maximizeEditor={maximizeEditor}

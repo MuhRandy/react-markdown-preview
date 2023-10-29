@@ -1,7 +1,8 @@
 import {
   IconArrowsMaximize,
   IconArrowsDiagonalMinimize2,
-} from '@tabler/icons-react';
+} from "@tabler/icons-react";
+import clsx from "clsx";
 
 const Header = ({ handleClick, maximize, icon, text }) => {
   return (
@@ -9,10 +10,8 @@ const Header = ({ handleClick, maximize, icon, text }) => {
       {icon}
       {text}
       <button className="absolute right-0" onClick={handleClick}>
-        <IconArrowsMaximize className={`${maximize ? 'hidden' : ''}`} />
-        <IconArrowsDiagonalMinimize2
-          className={`${maximize ? '' : 'hidden'}`}
-        />
+        <IconArrowsMaximize className={clsx({ hidden: maximize })} />
+        <IconArrowsDiagonalMinimize2 className={clsx({ hidden: !maximize })} />
       </button>
     </div>
   );

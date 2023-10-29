@@ -4,6 +4,7 @@ import remarkGfm from "remark-gfm";
 import Header from "./Header";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { atomDark } from "react-syntax-highlighter/dist/esm/styles/prism";
+import clsx from "clsx";
 
 const Preview = ({
   maximizeEditor,
@@ -11,19 +12,11 @@ const Preview = ({
   markdown,
   handleClick,
 }) => {
-  const style = (a, b) => {
-    let arr = [];
-    for (const i in b) {
-      arr.push(a + b[i]);
-    }
-    return arr.join(" ");
-  };
-
   return (
     <div
-      className={`min-w-[800px] shadow-lg shadow-black ${
-        maximizeEditor ? "hidden" : ""
-      }`}
+      className={clsx("min-w-[800px] shadow-lg shadow-black", {
+        hidden: maximizeEditor,
+      })}
     >
       <Header
         handleClick={handleClick}
@@ -32,18 +25,7 @@ const Preview = ({
         text={"Preview"}
       />
       <Markdown
-        className={`prose prose-table:max-w-fit ${style("prose-td:", [
-          "border-black",
-          "border",
-          "p-1",
-        ])} ${style("prose-th:", [
-          "border-black",
-          "border",
-          "p-1",
-        ])} leading-5 max-w-[800px] prose-headings:border-b-2 prose-p:whitespace-pre-wrap bg-slate-200 px-10 py-5 ${style(
-          "prose-blockquote:",
-          ["border-l-5", "border-slate-800", "ml-3"]
-        )}`}
+        className="prose prose-table:max-w-fit leading-5 max-w-[800px] prose-headings:border-b-2 prose-p:whitespace-pre-wrap bg-slate-200 px-10 py-5 prose-td:border-black prose-td:border prose-td:p-1 prose-th:border-black prose-th:border prose-th:p-1 prose-blockquote:border-l-4 prose-blockquote:border-slate-500 prose-blockquote:ml-10"
         remarkPlugins={[remarkGfm]}
         children={`${markdown}`}
         components={{
