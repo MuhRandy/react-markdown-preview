@@ -1,9 +1,12 @@
-import { useState } from "react";
+import { useState, createContext, useContext } from "react";
 import Editor from "./components/Editor";
 import Preview from "./components/Preview";
 import LayoutToggle from "./components/LayoutToggle";
-import clsx from "clsx";
 import { cn } from "./utils";
+
+const AppContext = createContext();
+
+export const useAppContext = () => useContext(AppContext);
 
 function App() {
   const defaultMarkdown =
@@ -44,51 +47,30 @@ function App() {
   const [maximizePreview, setMaximizePreview] = useState(false);
   const [sideBySide, setSideBySide] = useState(false);
 
-  const handleChange = (e) => {
-    setMarkdown(e.target.value);
-  };
-
-  const handleClickEditor = () => {
-    setMaximizeEditor(!maximizeEditor);
-  };
-
-  const handleClickPreview = () => {
-    setMaximizePreview(!maximizePreview);
-  };
-
-  const handleClickLayout = () => {
-    setSideBySide(!sideBySide);
-  };
-
   return (
-    <div
-      className={cn("flex flex-col items-center gap-5 sm:py-4 relative", {
-        "gap-2 flex-row items-start sm:pt-10 md:gap-3":
-          sideBySide && !maximizeEditor && !maximizePreview,
-      })}
+    <AppContext.Provider
+      value={{
+        markdown,
+        setMarkdown,
+        maximizeEditor,
+        setMaximizeEditor,
+        maximizePreview,
+        setMaximizePreview,
+        sideBySide,
+        setSideBySide,
+      }}
     >
-      <LayoutToggle
-        maximizeEditor={maximizeEditor}
-        maximizePreview={maximizePreview}
-        sideBySide={sideBySide}
-        handleClick={handleClickLayout}
-      />
-      <Editor
-        maximizeEditor={maximizeEditor}
-        maximizePreview={maximizePreview}
-        handleChange={handleChange}
-        handleClick={handleClickEditor}
-        markdown={markdown}
-        sideBySide={sideBySide}
-      />
-      <Preview
-        maximizeEditor={maximizeEditor}
-        maximizePreview={maximizePreview}
-        markdown={markdown}
-        handleClick={handleClickPreview}
-        sideBySide={sideBySide}
-      />
-    </div>
+      <div
+        className={cn("flex flex-col items-center gap-5 sm:py-4 relative", {
+          "gap-2 flex-row items-start sm:pt-10 md:gap-3":
+            sideBySide && !maximizeEditor && !maximizePreview,
+        })}
+      >
+        <LayoutToggle />
+        <Editor />
+        <Preview />
+      </div>
+    </AppContext.Provider>
   );
 }
 

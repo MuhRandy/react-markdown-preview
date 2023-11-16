@@ -6,14 +6,20 @@ import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { atomDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 import clsx from "clsx";
 import { cn } from "../utils";
+import { useAppContext } from "../App";
 
-const Preview = ({
-  maximizeEditor,
-  maximizePreview,
-  markdown,
-  handleClick,
-  sideBySide,
-}) => {
+const Preview = () => {
+  const {
+    maximizeEditor,
+    maximizePreview,
+    setMaximizePreview,
+    markdown,
+    sideBySide,
+  } = useAppContext();
+
+  const handleClick = () => {
+    setMaximizePreview(!maximizePreview);
+  };
   return (
     <div
       className={clsx("shadow-sm shadow-black", {

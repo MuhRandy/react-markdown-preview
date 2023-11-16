@@ -2,15 +2,26 @@ import { IconEdit } from "@tabler/icons-react";
 import Header from "./Header";
 import clsx from "clsx";
 import { cn } from "../utils";
+import { useAppContext } from "../App";
 
-const Editor = ({
-  maximizeEditor,
-  maximizePreview,
-  handleChange,
-  handleClick,
-  markdown,
-  sideBySide,
-}) => {
+const Editor = () => {
+  const {
+    maximizeEditor,
+    maximizePreview,
+    setMaximizeEditor,
+    markdown,
+    setMarkdown,
+    sideBySide,
+  } = useAppContext();
+
+  const handleChange = (e) => {
+    setMarkdown(e.target.value);
+  };
+
+  const handleClick = () => {
+    setMaximizeEditor(!maximizeEditor);
+  };
+
   return (
     <div
       className={clsx("shadow-sm shadow-black", {

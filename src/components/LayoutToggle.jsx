@@ -1,12 +1,15 @@
 import { IconLayoutNavbar, IconLayoutSidebar } from "@tabler/icons-react";
 import clsx from "clsx";
+import { useAppContext } from "../App";
 
-const LayoutToggle = ({
-  sideBySide,
-  maximizeEditor,
-  maximizePreview,
-  handleClick,
-}) => {
+const LayoutToggle = () => {
+  const { sideBySide, setSideBySide, maximizeEditor, maximizePreview } =
+    useAppContext();
+
+  const handleClick = () => {
+    setSideBySide(!sideBySide);
+  };
+
   return (
     <button
       className={clsx(
