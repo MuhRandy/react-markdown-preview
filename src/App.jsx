@@ -3,6 +3,7 @@ import Editor from "./components/Editor";
 import Preview from "./components/Preview";
 import LayoutToggle from "./components/LayoutToggle";
 import clsx from "clsx";
+import { cn } from "./utils";
 
 function App() {
   const defaultMarkdown =
@@ -61,8 +62,9 @@ function App() {
 
   return (
     <div
-      className={clsx("flex min-w-[100vw] gap-5 py-4 relative", {
-        "flex-col items-center": !sideBySide,
+      className={cn("flex flex-col items-center gap-5 sm:py-4 relative", {
+        "gap-2 flex-row items-start sm:pt-10 md:gap-3":
+          sideBySide && !maximizeEditor && !maximizePreview,
       })}
     >
       <LayoutToggle
@@ -77,12 +79,14 @@ function App() {
         handleChange={handleChange}
         handleClick={handleClickEditor}
         markdown={markdown}
+        sideBySide={sideBySide}
       />
       <Preview
         maximizeEditor={maximizeEditor}
         maximizePreview={maximizePreview}
         markdown={markdown}
         handleClick={handleClickPreview}
+        sideBySide={sideBySide}
       />
     </div>
   );

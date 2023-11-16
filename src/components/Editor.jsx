@@ -1,6 +1,7 @@
 import { IconEdit } from "@tabler/icons-react";
 import Header from "./Header";
 import clsx from "clsx";
+import { cn } from "../utils";
 
 const Editor = ({
   maximizeEditor,
@@ -8,10 +9,13 @@ const Editor = ({
   handleChange,
   handleClick,
   markdown,
+  sideBySide,
 }) => {
   return (
     <div
-      className={clsx("shadow-xl shadow-black", { hidden: maximizePreview })}
+      className={clsx("shadow-sm shadow-black", {
+        hidden: maximizePreview,
+      })}
     >
       <Header
         handleClick={handleClick}
@@ -20,10 +24,23 @@ const Editor = ({
         text={"Editor"}
       />
       <textarea
+        className={cn("min-w-[100vw] px-1 min-h-[40vh]", [
+          [
+            "sm:min-w-[90vw] sm:px-3",
+            {
+              "sm:min-w-[45vw] min-h-[221vh]": sideBySide && !maximizeEditor,
+            },
+          ],
+          [
+            "md:min-w-[60vw] md:min-h-[50vh]",
+            {
+              "md:min-w-[45vw] md:min-h-[223vh]": sideBySide && !maximizeEditor,
+              "min-h-[95vh] md:min-h-[95vh] md:min-w-[70vw]": maximizeEditor,
+            },
+          ],
+        ])}
         name="editor"
         id="editor"
-        cols="60"
-        rows={`${maximizeEditor ? "24" : "20"}`}
         onChange={handleChange}
         value={markdown}
       />

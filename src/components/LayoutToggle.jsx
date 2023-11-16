@@ -10,7 +10,7 @@ const LayoutToggle = ({
   return (
     <button
       className={clsx(
-        "bg-black text-white absolute top-4 right-4 p-2 rounded-lg",
+        "bg-black text-white absolute top-1 right-1 p-[2px] rounded-lg hidden sm:inline-block",
         { hidden: maximizeEditor || maximizePreview }
       )}
       onClick={handleClick}
